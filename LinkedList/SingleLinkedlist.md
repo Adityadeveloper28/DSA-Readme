@@ -6,8 +6,11 @@ This document provides an overview and explanation of the Singly Linked List imp
 - Insert at the beginning
 - Insert at the end
 - Insert at a specific position
+- Delete first node
+- Delete last node
+- Delete at a specific position
+- Search for an element
 - Print the list
-- (Menu structure for delete/search, but not implemented in the code above)
 
 ## Data Structures
 
@@ -24,6 +27,10 @@ struct Node {
 - `insertAtEnd(int val)`: Inserts a value at the end of the list.
 - `insertAtBegin(int val)`: Inserts a value at the beginning of the list.
 - `insertAtPosition(int pos, int val)`: Inserts a value at a specific position (0-based).
+- `deleteFirst()`: Deletes the first node of the list.
+- `deleteLast()`: Deletes the last node of the list.
+- `deleteAtPosition(int pos)`: Deletes the node at a specific position (0-based).
+- `search(int val)`: Searches for a value in the list and prints its position if found.
 - `printList()`: Prints the entire list.
 
 ## Example Usage
@@ -33,6 +40,11 @@ SinglyLinkedList list;
 list.insertAtBegin(10);
 list.insertAtEnd(20);
 list.insertAtPosition(1, 15); // List: 10 -> 15 -> 20 -> Null
+list.deleteFirst(); // Deletes 10
+list.deleteLast();  // Deletes 20
+list.deleteAtPosition(0); // Deletes 15
+list.insertAtEnd(30);
+list.search(30); // Found 30 at position 0
 list.printList();
 ```
 
@@ -42,9 +54,12 @@ The `main()` function provides a menu-driven interface for interacting with the 
 - Insert at Beginning
 - Insert at End
 - Insert at Position
+- Delete First
+- Delete Last
+- Delete at Position
 - Display List
-
-Other options (delete/search) are shown in the menu but not implemented in the code above.
+- Search Element
+- Exit
 
 ## Sample Output
 ```
@@ -66,8 +81,8 @@ Enter value: 10
 
 ## Notes
 - The code uses basic C++ features and is suitable for beginners.
-- Error handling is included for invalid positions.
-- The delete and search functionalities are listed in the menu but not implemented in the provided code.
+- Error handling is included for invalid positions and empty list cases.
+- All menu options are now fully implemented, including delete and search operations.
 
 ---
 
