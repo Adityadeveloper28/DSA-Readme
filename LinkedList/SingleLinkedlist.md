@@ -78,6 +78,7 @@ Enter value: 10
 
 ```cpp
 // Online C++ compiler to run C++ program online
+// Online C++ compiler to run C++ program online
 #include <iostream>
 using namespace std;
 
@@ -137,6 +138,60 @@ class SinglyLinkedList {
             cur->next=node;
         }
         
+        
+        void deleteFirst(){
+            if(!head) {
+                cout<<"list empty";return;
+            }
+            Node* del = head;
+            head = head->next;
+            delete del;
+        }
+        
+        
+        void deleteLast(){
+            if(!head){
+                cout<<"list empty";
+                return;
+            }
+            if(!head->next){
+                delete head;
+                head = nullptr;
+                return;
+            }
+            Node* cur = head;
+            while(cur->next->next){
+                cur=cur->next;
+            }
+            delete cur->next;
+            cur->next=nullptr;
+            
+        }
+        
+        
+        void deleteAtPosition(int pos){
+            if(!head || pos<0){
+                cout<<"invalid input";
+                return;
+            }
+            if (pos == 0) { deleteFirst(); return; }
+            Node* cur = head;
+            for(int i ; i<pos-1 && cur; ++i){
+                cur = cur->next;
+                
+                
+            }
+            if(!cur || !cur->next){
+                    cout<<"outof range";
+                    return;
+                }
+                
+                Node* del = cur->next;
+        cur->next = del->next;
+        delete del;
+            
+        }
+        
         void printList(){
             if(!head){
                 cout<<"list is empty";return;
@@ -149,6 +204,21 @@ class SinglyLinkedList {
             }
             cout<<"->Null\n";
         }
+        
+        
+        void search(int val) {
+        Node* cur = head;
+        int idx = 0;
+        while (cur) {
+            if (cur->data == val) {
+                cout << "Found " << val << " at position " << idx << "\n";
+                return;
+            }
+            cur = cur->next;
+            idx++;
+        }
+        cout << "Value not found!\n";
+    }
 };
 
 int main() {
@@ -185,8 +255,29 @@ int main() {
                 cin >> pos >> val;
                 list.insertAtPosition(pos, val);
                 break;
+            
+            case 4:
+                list.deleteFirst();
+                break;
+                
+            case 5:
+                list.deleteLast();
+                break;
+            case 6:
+                cout << "Enter position (0-based): ";
+                cin >> pos;
+                list.deleteAtPosition(pos);
+                break;
             case 7:
                 list.printList();
+                break;
+            case 8:
+                cout << "Enter value to search: ";
+                cin >> val;
+                list.search(val);
+                break;
+            case 9:
+                cout << "Exiting...\n";
                 break;
              default:
                 cout << "Invalid choice!\n";
